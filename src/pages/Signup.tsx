@@ -3,14 +3,9 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../constants";
 
-interface User {
-  username: string;
-  email: string;
-  password: string;
-}
-
 const SignUp: React.FC = () => {
-  const [user, setUser] = useState<User>({
+  const [user, setUser] = useState<SignInUser>({
+    name: "",
     username: "",
     email: "",
     password: "",
@@ -47,6 +42,15 @@ const SignUp: React.FC = () => {
             <h2>Sign Up</h2>
           </div>
           <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="name">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={user.name}
+                onChange={handleChange}
+              />
+            </Form.Group>
             <Form.Group controlId="username">
               <Form.Label>Username:</Form.Label>
               <Form.Control

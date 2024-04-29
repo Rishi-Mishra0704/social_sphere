@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { PageRoutes } from "../constants";
 import { Sidebar, Menu, MenuItem, sidebarClasses, MenuItemStyles } from "react-pro-sidebar";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaSearch } from "react-icons/fa";
 import { GiExitDoor } from "react-icons/gi";
 interface SidebarProps {
   children: React.ReactNode;
@@ -56,6 +56,12 @@ const SideBar: React.FC<SidebarProps> = ({ children }: SidebarProps) => {
               component={<Link to={PageRoutes.Home} />}
             >
               Home
+            </MenuItem>
+            <MenuItem
+              icon={<FaSearch/>}
+              component={<Link to={PageRoutes.Search} />}
+            >
+              Search
             </MenuItem>
             <MenuItem
               icon={<GiExitDoor/>}

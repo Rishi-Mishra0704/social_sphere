@@ -5,7 +5,8 @@ type MenuItem = {
   route: string;
 };
 
-interface User {
+interface SignInUser {
+  name: string;
   username: string;
   email: string;
   password: string;
@@ -16,4 +17,12 @@ type Post = {
   id: number;
   title: string;
   body: string;
+};
+
+type User = {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
+  phone: string;
 };
