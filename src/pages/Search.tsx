@@ -11,7 +11,7 @@ const Search = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        await getData("https://jsonplaceholder.typicode.com/users");
+        await getData("https://662f9df543b6a7dce3102518.mockapi.io/api/users");
       } catch (error) {
         console.error("Error fetching users:", error);
       }

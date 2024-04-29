@@ -8,14 +8,14 @@ const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        await getData("https://jsonplaceholder.typicode.com/posts"); // Use the getData function from the useApi hook
+        await getData("https://662f9df543b6a7dce3102518.mockapi.io/api/posts"); // Use the getData function from the useApi hook
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
 
     fetchPosts();
-  }, [getData]);
+  }, []);
 
   return (
     <Container>

@@ -21,7 +21,7 @@ const AddPost: React.FC<AddPostProps> = ({ showModal, setShowModal }) => {
       console.log("New post:", newPost);
 
       const addedPost = await postData(
-        "https://jsonplaceholder.typicode.com/posts",
+        "https://662f9df543b6a7dce3102518.mockapi.io/api/posts",
         newPost
       );
       console.log("Added post:", addedPost);

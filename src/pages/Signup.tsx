@@ -2,13 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { PageRoutes } from "../constants";
+import useApi from "../hooks/useApi";
 
 const SignUp: React.FC = () => {
-  const [user, setUser] = useState<SignInUser>({
+  const {postData} = useApi<User>();
+  const [user, setUser] = useState<User>({
+    id: null,
     name: "",
     username: "",
     email: "",
     password: "",
+    phone: 0,
   });
   const navigate = useNavigate();
 
@@ -30,6 +34,7 @@ const SignUp: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     localStorage.setItem("user", JSON.stringify(user));
+    postData("https://662f9df543b6a7dce3102518.mockapi.io/api/users", user);
     // Redirect to Home after sign-up
     navigate(PageRoutes.Home);
   };
@@ -66,6 +71,15 @@ const SignUp: React.FC = () => {
                 type="email"
                 name="email"
                 value={user.email}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="phone_no">
+              <Form.Label>Phone no:</Form.Label>
+              <Form.Control
+                type="phone_no"
+                name="phone_no"
+                value={user.phone}
                 onChange={handleChange}
               />
             </Form.Group>

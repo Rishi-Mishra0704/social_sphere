@@ -5,13 +5,6 @@ type MenuItem = {
   route: string;
 };
 
-interface SignInUser {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-}
-
 type Post = {
   userId: number;
   id: string;
@@ -20,9 +13,10 @@ type Post = {
 };
 
 type User = {
-  id: number;
+  id: number | null;
   name: string;
   username: string;
   email: string;
-  phone: string;
+  phone: number;
+  password: string;
 };
