@@ -14,7 +14,7 @@ interface SignInUser {
 
 type Post = {
   userId: number;
-  id: number;
+  id: string;
   title: string;
   body: string;
 };

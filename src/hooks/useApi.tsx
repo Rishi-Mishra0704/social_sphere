@@ -1,7 +1,4 @@
 import { useState } from "react";
-import {
-  API_BASE_URL,
-} from "../constants/api-constants";
 
 interface APIState<T> {
   data: T | undefined;
@@ -45,8 +42,11 @@ const useApi = <T,>(): APIState<T> => {
    */
   const getData = async (url: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}${url}`, {
+      const response = await fetch(`${url}`, {
         method: "GET",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
       });
       const data = await response.json();
       setData(data);
@@ -66,8 +66,11 @@ const useApi = <T,>(): APIState<T> => {
    */
   const postData = async (url: string, body: unknown) => {
     try {
-      const response = await fetch(`${API_BASE_URL}${url}`, {
+      const response = await fetch(`${url}`, {
         method: "POST",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
         body: JSON.stringify(body),
       });
       const data = await response.json();
@@ -88,8 +91,11 @@ const useApi = <T,>(): APIState<T> => {
    */
   const putData = async (url: string, body: unknown) => {
     try {
-      const response = await fetch(`${API_BASE_URL}${url}`, {
+      const response = await fetch(`${url}`, {
         method: "PUT",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
         body: JSON.stringify(body),
       });
       const data = await response.json();
@@ -111,8 +117,11 @@ const useApi = <T,>(): APIState<T> => {
    */
   const deleteData = async (url: string) => {
     try {
-      const response = await fetch(`${API_BASE_URL}${url}`, {
+      const response = await fetch(`${url}`, {
         method: "DELETE",
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
       });
       const data = await response.json();
       setData(data);
