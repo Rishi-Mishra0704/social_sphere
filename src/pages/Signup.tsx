@@ -1,12 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { PageRoutes } from '../constants';
+import React, { useState, useEffect } from "react";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { PageRoutes } from "../constants";
+
+interface User {
+  username: string;
+  email: string;
+  password: string;
+}
+
 const SignUp: React.FC = () => {
-  const [user, setUser] = useState<User>({ username: '', password: '' });
+  const [user, setUser] = useState<User>({
+    username: "",
+    email: "",
+    password: "",
+  });
   const navigate = useNavigate();
+
   useEffect(() => {
     // Check if user data exists in local storage
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
@@ -21,38 +34,55 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
     // Redirect to Home after sign-up
-    navigate(PageRoutes.Home)
+    navigate(PageRoutes.Home);
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+    <Container>
+      <Row className="justify-content-center mt-5">
+        <Col xs={12} md={6}>
+          <div className="text-center">
+            <h2>Sign Up</h2>
+          </div>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="username">
+              <Form.Label>Username:</Form.Label>
+              <Form.Control
+                type="text"
+                name="username"
+                value={user.username}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="email">
+              <Form.Label>Email:</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>Password:</Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <div className="text-center mt-4">
+              <Button variant="primary" type="submit">
+                Sign Up
+              </Button>
+            </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
